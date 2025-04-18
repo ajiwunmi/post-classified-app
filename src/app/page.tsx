@@ -1,8 +1,8 @@
 // app/page.tsx
 import Header from '@/components/Header';
-import HeroBanner from '@/components/HeroBanner';
+import HeroBanner from '@/components/_HeroBanner';
 import CategoryGrid from '@/components/CategoryGrid';
-import ProductCard from '@/components/ProductCard';
+import ProductCard from '@/components/_ProductCard';
 import Footer from '@/components/Footer';
 import { listings } from '@/data/mockListings';
 
