@@ -2,7 +2,7 @@
 'use client';
 
 import { useState } from 'react';
-import Header from '@/components/Header';
+import Header from '@/components/_Header';
 import Footer from '@/components/Footer';
 import ProductCard from '@/components/_ProductCard';
 import SearchFilter from '@/components/SearchFilter';

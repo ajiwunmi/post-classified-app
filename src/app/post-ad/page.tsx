@@ -1,16 +1,13 @@
-// app/post-ad/page.tsx
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import AdForm from '@/components/AdForm';
+'use client';
+import React from "react";
 
-export default function PostAdPage() {
+export default async function PostAdPage() {
+ 
   return (
-    <div>
-      <Header />
+    <div>     
       <main className="max-w-3xl mx-auto px-4 py-10">
-        <AdForm />
+       Post Ad Pages
       </main>
-      <Footer />
     </div>
   );
 }
