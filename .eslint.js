@@ -22,3 +22,25 @@ module.exports = {
 		"react/react-in-jsx-scope": "off",
 	},
 };
+
+
+// module.exports = {
+//   parser: '@typescript-eslint/parser',
+//   extends: [
+//     'eslint:recommended',
+//     'plugin:react/recommended', // Add this line for React linting
+//     'plugin:@typescript-eslint/recommended', // If using TypeScript
+//   ],
+//   plugins: [
+//     'react', // Ensure the React plugin is listed here
+//     '@typescript-eslint',
+//   ],
+//   settings: {
+//     react: {
+//       version: 'detect', // Automatically detects the React version
+//     },
+//   },
+//   rules: {
+//     // Custom rules
+//   },
+// };
