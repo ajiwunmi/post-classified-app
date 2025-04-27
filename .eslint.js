@@ -8,14 +8,10 @@ module.exports = {
 	},
 	plugins: ["@typescript-eslint", "react", "tailwindcss"],
 	extends: [
-		"eslint:recommended",
-		"plugin:react/recommended",
-		 "plugin:react-hooks/recommended",
-		"plugin:@typescript-eslint/recommended",
-		"plugin:tailwindcss/recommended",
-		"plugin:prettier/recommended",
-		"next",
-		"next/core-web-vitals",
+		 "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "next",
+    "next/core-web-vitals"
 	],
 	rules: {
 		// Customize rules if needed
