@@ -9,7 +9,14 @@ export default defineConfig([
   {
     files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
     plugins: { js },
-    extends: ['js/recommended', 'plugin:react/jsx-runtime'],
+    extends: [
+      'js/recommended',
+      'plugin:react/jsx-runtime',
+      'plugin:react/recommended',
+      'plugin:react-hooks/recommended',
+      'next',
+      'next/core-web-vitals',
+    ],
   },
   {
     files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
