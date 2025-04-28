@@ -1,5 +1,5 @@
 // app/api/auth/[...nextauth]/route.ts
-import NextAuth, { AuthOptions } from 'next-auth';
+import NextAuth from 'next-auth';
 import GitHubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
@@ -8,10 +8,10 @@ import { connectDB } from '@/lib/mongodb';
 import { User } from '@/models/User';
 import { env } from '@/lib/validateEnv';
 import crypto from 'crypto';
+import type { OAuthUser, OAuthAccount, GitHubProfile } from '@/app/types/auth';
 
-import type { OAuthUser, OAuthAccount, GitHubProfile } from '@/app/types/auth'; // import your custom types
-
-export const authOptions: AuthOptions = {
+// Define the NextAuth options directly inside the API route
+const authOptions = {
   providers: [
     GitHubProvider({
       clientId: env.AUTH_GITHUB_ID,
@@ -31,19 +31,15 @@ export const authOptions: AuthOptions = {
         credentials: Record<'email' | 'password', string> | undefined
       ) {
         await connectDB();
-
         const user = await User.findOne({ email: credentials?.email }).select(
           '+password'
         );
         if (!user) throw new Error('Invalid email or password');
 
         if (credentials === undefined)
-          throw new Error('Credential is undefined ');
-
+          throw new Error('Credential is undefined');
         const isValid = await compare(credentials.password, user.password);
-
         if (!isValid) throw new Error('Invalid email or password');
-        // console.log("USER :" ,user);
         return {
           id: user._id.toString(),
           name: user.name,
@@ -63,23 +59,15 @@ export const authOptions: AuthOptions = {
   callbacks: {
     async signIn({
       user,
-      account: _account,
-      profile : _profile,
+      account,
+      profile,
     }: {
       user: OAuthUser;
       account: OAuthAccount;
       profile?: GitHubProfile;
     }) {
-      // console.log('✅ signIn callback triggered');
-      // console.log('User:', user);
-      // console.log('Account:', account);
-      // console.log('Profile:', profile);
-
       await connectDB();
-
       const existing = await User.findOne({ email: user.email });
-
-      // generate a random password so schema validation passes
       const randomPassword = crypto.randomBytes(16).toString('hex');
       const hashed = await bcrypt.hash(randomPassword, 10);
 
@@ -111,17 +99,18 @@ export const authOptions: AuthOptions = {
         session.user.name = token.name;
         session.user.email = token.email;
       }
-      // console.log('SESSION :', session);
-      //console.log('USER :', session.user);
       return session;
     },
+
     async redirect({ url, baseUrl }) {
-      // Safe redirect for all successful logins
       return url.startsWith(baseUrl) ? url : baseUrl + '/';
     },
   },
   secret: env.AUTH_SECRET!,
 };
 
-const handler = NextAuth(authOptions);
+// Export the API handler for NextAuth
+export const handler = NextAuth(authOptions);
+
+// Export as GET and POST handlers for Next.js 13+ API route
 export { handler as GET, handler as POST };
