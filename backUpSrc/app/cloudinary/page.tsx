@@ -3,7 +3,6 @@ import React from 'react';
 // import Footer from '@/components/Footer';
 // import { CldUploadButton } from 'next-cloudinary';
 
-
 export default async function CloudinaryPage() {
   return (
     <div>

@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import Link from "next/link";
+import Link from 'next/link';
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');
@@ -10,7 +10,7 @@ export default function ForgotPassword() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-     setLoading(true);
+    setLoading(true);
 
     const res = await fetch('/api/auth/forgot-password', {
       method: 'POST',
@@ -19,17 +19,16 @@ export default function ForgotPassword() {
     });
 
     const data = await res.json();
-    
 
     if (!res.ok) {
       setError(data.error);
       setMessage('');
-       setLoading(false);
+      setLoading(false);
     } else {
       // setMessage(`Reset token (for dev): ${data.token}`);
-       setMessage(data.message);
+      setMessage(data.message);
       setError('');
-       setLoading(false);
+      setLoading(false);
     }
   };
 
@@ -79,9 +78,7 @@ export default function ForgotPassword() {
                 </div>
               </form>
               <div className="flex flex-wrap mt-6 relative">
-                <div className="w-1/2">
-                  
-                </div>
+                <div className="w-1/2"></div>
                 <div className="w-1/2 text-right">
                   <Link href="/auth/login" className="text-blueGray-200">
                     <small>Back to Login</small>

@@ -2,8 +2,8 @@
 // import { useSession, signIn, signOut } from 'next-auth/react';
 
 export default function Header() {
-//  const { data: session } = useSession();
-const session = false
+  //  const { data: session } = useSession();
+  const session = false;
 
   return (
     <header className="bg-white shadow-sm">

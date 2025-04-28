@@ -20,9 +20,9 @@ export default async function MyAdsPage() {
       <main className="max-w-7xl mx-auto px-4 py-10">
         <h2 className="text-2xl font-bold mb-6">My Ads</h2>
         <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {myAds.map((ad: any) => ( 
-             <ProductCard key={ad._id} data={ad} /> 
-           ))}
+          {myAds.map((ad: any) => (
+            <ProductCard key={ad._id} data={ad} />
+          ))}
         </div>
       </main>
       <Footer />

@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { useSession, signOut, signIn } from 'next-auth/react';
 
-
 export default function Header() {
   const { data: session } = useSession();
 

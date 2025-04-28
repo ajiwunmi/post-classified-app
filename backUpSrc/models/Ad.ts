@@ -9,7 +9,7 @@ const AdSchema = new Schema(
     description: String,
     image: String,
   },
-  { timestamps: true },
+  { timestamps: true }
 );
 
 export const Ad = mongoose.models.Ad || mongoose.model('Ad', AdSchema);

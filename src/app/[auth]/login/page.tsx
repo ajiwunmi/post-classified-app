@@ -1,73 +1,70 @@
 'use client';
 //app/login/page.tsx
 import { signIn } from 'next-auth/react';
-import {useState}  from "react";
-import Link from "next/link";
-import {useRouter } from 'next/navigation';
-
-
+import { useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
- 
+
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
-   const handleCredentialsLogin = async (e: React.FormEvent) => {
-     e.preventDefault();
-     setLoading(true);
+  const handleCredentialsLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
 
-      // const res = await signIn('credentials', {
-      //   email,
-      //   password,
-      //   redirect: true,
-      //   callbackUrl: '/dashboard',
-      // });
+    // const res = await signIn('credentials', {
+    //   email,
+    //   password,
+    //   redirect: true,
+    //   callbackUrl: '/dashboard',
+    // });
 
-     const res = await signIn('credentials', {
-       email,
-       password,
-       redirect: false,
-     });
-     console.log("Logging the response from Callback", res)
-     if (res?.error) {
-       setError('Invalid email or password');
-       setLoading(false);
-     } else {
-       router.push('/');
-       
-     }
-   };
+    const res = await signIn('credentials', {
+      email,
+      password,
+      redirect: false,
+    });
+    console.log('Logging the response from Callback', res);
+    if (res?.error) {
+      setError('Invalid email or password');
+      setLoading(false);
+    } else {
+      router.push('/');
+    }
+  };
 
-   const handleGithubLogin = async (e: React.FormEvent) => {
-     e.preventDefault();
-     setLoading(true);
+  const handleGithubLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
     //  const res = await signIn('github');
-      await signIn('github', { callbackUrl: '/' });
+    await signIn('github', { callbackUrl: '/' });
 
     //  if (res?.error) {
     //    setError('Githun error: '+ res?.error);
     //    setLoading(false);
     //  } else {
-    //    //router.push('/');   
+    //    //router.push('/');
     //  }
-   };
-   
-    const handleGoogleLogin = async (e: React.FormEvent) => {
-      e.preventDefault();
-      setLoading(true);
-      // const res = await signIn('google');
-      await signIn('google', { callbackUrl: '/dashboard' });   
+  };
 
-      // if (res?.error) {
-      //   setError('Google error: ' + res?.error);
-      //   setLoading(false);
-      // } else {
-      //   router.push('/');
-      // }
-    };
+  const handleGoogleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    // const res = await signIn('google');
+    await signIn('google', { callbackUrl: '/dashboard' });
+
+    // if (res?.error) {
+    //   setError('Google error: ' + res?.error);
+    //   setLoading(false);
+    // } else {
+    //   router.push('/');
+    // }
+  };
   return (
     <>
       <div className="min-h-screen flex items-center justify-center bg-gray-100">

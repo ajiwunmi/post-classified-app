@@ -14,7 +14,7 @@ export async function POST(req: Request) {
   const newAd = await Ad.create(body);
   return NextResponse.json(
     { message: 'Ad created', ad: newAd },
-    { status: 201 },
+    { status: 201 }
   );
 }
 

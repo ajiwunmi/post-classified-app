@@ -1,10 +1,10 @@
 import { connectDB } from '@/lib/mongodb';
-import {User} from '@/models/User';
+import { User } from '@/models/User';
 import bcrypt from 'bcrypt';
 import { NextRequest, NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
 
-export const POST = async (req : NextRequest) => {
+export const POST = async (req: NextRequest) => {
   try {
     await connectDB();
     const { email, password } = await req.json();
@@ -13,7 +13,7 @@ export const POST = async (req : NextRequest) => {
     if (!email || !password) {
       return NextResponse.json(
         { message: 'Email and password are required' },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
@@ -22,7 +22,7 @@ export const POST = async (req : NextRequest) => {
     if (!user) {
       return NextResponse.json(
         { message: 'Invalid credentials' },
-        { status: 401 },
+        { status: 401 }
       );
     }
 
@@ -31,19 +31,19 @@ export const POST = async (req : NextRequest) => {
     if (!isMatch) {
       return NextResponse.json(
         { message: 'Invalid credentials' },
-        { status: 401 },
+        { status: 401 }
       );
     }
 
     const token = jwt.sign(
       { id: user._id, role: user.role, name: user.name },
       process.env.JWT_SECRET,
-      { expiresIn: '2h' },
+      { expiresIn: '2h' }
     );
 
     return NextResponse.json(
       { message: 'Login successful', user, token },
-      { status: 200 },
+      { status: 200 }
     );
   } catch (err) {
     return NextResponse.json({ message: err.message }, { status: 500 });

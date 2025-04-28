@@ -3,20 +3,13 @@ import NextAuth, { AuthOptions } from 'next-auth';
 import GitHubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import bcrypt, { compare} from 'bcrypt';
+import bcrypt, { compare } from 'bcrypt';
 import { connectDB } from '@/lib/mongodb';
 import { User } from '@/models/User';
 import { env } from '@/lib/validateEnv';
 import crypto from 'crypto';
 
-
-
-import type {
-  OAuthUser,
-  OAuthAccount,
-  GitHubProfile,
-  
-} from '@/app/types/auth'; // import your custom types
+import type { OAuthUser, OAuthAccount, GitHubProfile } from '@/app/types/auth'; // import your custom types
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -35,15 +28,15 @@ export const authOptions: AuthOptions = {
         password: { label: 'Password', type: 'password' },
       },
       async authorize(
-        credentials: Record<'email' | 'password', string> | undefined,
+        credentials: Record<'email' | 'password', string> | undefined
       ) {
         await connectDB();
 
         const user = await User.findOne({ email: credentials?.email }).select(
-          '+password',
+          '+password'
         );
         if (!user) throw new Error('Invalid email or password');
-      
+
         if (credentials === undefined)
           throw new Error('Credential is undefined ');
 
@@ -118,7 +111,7 @@ export const authOptions: AuthOptions = {
         session.user.name = token.name;
         session.user.email = token.email;
       }
-     // console.log('SESSION :', session);
+      // console.log('SESSION :', session);
       //console.log('USER :', session.user);
       return session;
     },

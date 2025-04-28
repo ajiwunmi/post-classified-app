@@ -8,6 +8,5 @@ export const env = z
     AUTH_SECRET: z.string(),
     GOOGLE_CLIENT_ID: z.string(),
     GOOGLE_CLIENT_SECRET: z.string(),
-    
   })
   .parse(process.env);

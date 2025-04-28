@@ -1,47 +1,47 @@
-'use client'
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import Link from "next/link";
+'use client';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function RegisterPage() {
-  const router = useRouter()
+  const router = useRouter();
   const [form, setForm] = useState({
     name: '',
     email: '',
     password: '',
     confirm_password: '',
-  })
-  const [error, setError] = useState('')
-  const [success, setSuccess] = useState('')
+  });
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e: any) => {
-    setForm({ ...form, [e.target.name]: e.target.value })
-  }
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e: any) => {
-    e.preventDefault()
-    setError('')
-    setSuccess('')
+    e.preventDefault();
+    setError('');
+    setSuccess('');
     setLoading(true);
 
     const res = await fetch('/api/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(form),
-    })
+    });
 
-    const data = await res.json()
+    const data = await res.json();
 
     if (!res.ok) {
-      setError(data.error)
+      setError(data.error);
       setLoading(false);
     } else {
       setLoading(false);
-      setSuccess('🎉 Registered! Redirecting...')
-      setTimeout(() => router.push('/auth/login'), 2000)
+      setSuccess('🎉 Registered! Redirecting...');
+      setTimeout(() => router.push('/auth/login'), 2000);
     }
-  }
+  };
 
   return (
     <>

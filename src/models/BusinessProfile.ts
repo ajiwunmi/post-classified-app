@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const BusinessProfileSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   businessName: { type: String, required: true },
   category: { type: String, required: true },
   description: { type: String },
@@ -39,9 +39,10 @@ const BusinessProfileSchema = new mongoose.Schema({
       link: { type: String }, // URL for the social media page
     },
   ],
-  ads: [{ type: mongoose.Schema.Types.ObjectId, ref: "Ad" }],
+  ads: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Ad' }],
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });
 
-export default mongoose.models.BusinessProfile || mongoose.model("BusinessProfile", BusinessProfileSchema);
+export default mongoose.models.BusinessProfile ||
+  mongoose.model('BusinessProfile', BusinessProfileSchema);

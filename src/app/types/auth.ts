@@ -1,22 +1,20 @@
 // types/auth.ts
 
 export type OAuthUser = {
-    id: string;
+  id: string;
   name: string;
   email: string;
   image: string;
   role: string;
- 
-}
+};
 
 export type Credentials = {
-    email : string,
-    password : string
-
-}
+  email: string;
+  password: string;
+};
 
 export type OAuthAccount = {
-  id : string;
+  id: string;
   userId: string;
   provider: string;
   type: string;

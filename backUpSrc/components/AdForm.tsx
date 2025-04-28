@@ -34,12 +34,12 @@ export default function AdForm() {
     formData.append('file', imageFile!);
     formData.append(
       'upload_preset',
-      process.env.NEXT_PUBLIC_CLOUDINARY_PRESET!,
+      process.env.NEXT_PUBLIC_CLOUDINARY_PRESET!
     );
 
     const res = await axios.post(
       `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD!}/image/upload`,
-      formData,
+      formData
     );
 
     return res.data.secure_url;

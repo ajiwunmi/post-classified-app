@@ -1,7 +1,7 @@
 // app/api/auth/forgot/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import { connectDB } from '@/lib/mongodb';
-import {User} from '@/models/User';
+import { User } from '@/models/User';
 import { sendEmail } from '@/lib/sendEmail';
 import crypto from 'crypto';
 
@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
     await sendEmail(
       user.email,
       'Reset your password',
-      `<p>Click to reset: <a href="${resetUrl}">${resetUrl}</a></p>`,
+      `<p>Click to reset: <a href="${resetUrl}">${resetUrl}</a></p>`
     );
   } catch (error) {
     console.error('Error sending email:', error);

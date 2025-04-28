@@ -1,14 +1,13 @@
 // models/User.ts
-import mongoose,{ Schema, Document } from 'mongoose';
-
+import mongoose, { Schema, Document } from 'mongoose';
 
 export interface IUser extends Document {
   name: string;
   email: string;
   phone: string;
   password: string;
-  role:string;
-  isVerified? : boolean;
+  role: string;
+  isVerified?: boolean;
   resetToken?: string;
   resetTokenExpiry?: Date;
 }
@@ -24,6 +23,7 @@ const userProperties = {
   resetTokenExpiry: { type: Date },
 };
 
-const UserSchema =  new Schema<IUser>(userProperties,{ timestamps: true });
+const UserSchema = new Schema<IUser>(userProperties, { timestamps: true });
 
-export const User = mongoose.models.User || mongoose.model<IUser>('User', UserSchema);
+export const User =
+  mongoose.models.User || mongoose.model<IUser>('User', UserSchema);

@@ -21,7 +21,7 @@ export async function POST(req: Request) {
   if (password !== confirm_password) {
     return NextResponse.json(
       { error: 'Passwords do not match' },
-      { status: 400 },
+      { status: 400 }
     );
   }
 
