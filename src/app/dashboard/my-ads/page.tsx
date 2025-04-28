@@ -3,7 +3,7 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { connectDB } from '@/lib/mongodb';
 import Ad from '@/models/Ad';
 import ProductCard from '@/components/ProductCard';
-import Header from '@/components/_Header';
+import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { redirect } from 'next/navigation';
 
