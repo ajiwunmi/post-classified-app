@@ -1,11 +1,11 @@
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { connectDB } from '@/lib/mongodb';
 import Ad from '@/models/Ad';
 import ProductCard from '@/components/ProductCard';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { redirect } from 'next/navigation';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'; // Correctly reference authOptions if needed
 
 export default async function MyAdsPage() {
   const session = await getServerSession(authOptions);

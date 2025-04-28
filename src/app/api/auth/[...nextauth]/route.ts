@@ -59,8 +59,8 @@ const authOptions = {
   callbacks: {
     async signIn({
       user,
-      account,
-      profile,
+      account: _account,
+      profile: _profile,
     }: {
       user: OAuthUser;
       account: OAuthAccount;
