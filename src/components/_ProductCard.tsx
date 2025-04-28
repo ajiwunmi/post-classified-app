@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 // components/ProductCard.tsx
 interface ProductProps {
   data: {
@@ -11,7 +13,7 @@ interface ProductProps {
 export default function ProductCard({ data }: ProductProps) {
   return (
     <div className="bg-white rounded-md shadow-sm hover:shadow-md transition">
-      <img
+      <Image
         src={data.image}
         alt={data.title}
         className="w-full h-48 object-cover rounded-t-md"

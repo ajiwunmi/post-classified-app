@@ -1,5 +1,5 @@
 // models/Ad.ts
-import mongoose, { Schema } from 'mongoose';
+import mongoose from 'mongoose';
 
 const AdSchema = new mongoose.Schema({
   title: { type: String, required: true },

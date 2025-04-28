@@ -2,6 +2,7 @@
 import { NextResponse } from 'next/server';
 import { connectDB } from '@/lib/mongodb';
 import Image from '@/models/ImageUpload';
+import { logger } from '@/lib/logger';  
 
 export async function POST(req: Request) {
   const { image_url, public_id, user_id } = await req.json();
@@ -23,7 +24,7 @@ export async function POST(req: Request) {
       { status: 201 }
     );
   } catch (err) {
-    console.error(err);
+    logger.error(err);
     return NextResponse.json({ error: 'Database error' }, { status: 500 });
   }
 }

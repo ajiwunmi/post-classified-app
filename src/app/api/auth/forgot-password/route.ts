@@ -4,6 +4,11 @@ import { connectDB } from '@/lib/mongodb';
 import { User } from '@/models/User';
 import { sendEmail } from '@/lib/sendEmail';
 import crypto from 'crypto';
+import {logger} from '@/lib/logger';
+
+  
+
+
 
 export async function POST(req: NextRequest) {
   await connectDB();
@@ -29,7 +34,7 @@ export async function POST(req: NextRequest) {
       `<p>Click to reset: <a href="${resetUrl}">${resetUrl}</a></p>`
     );
   } catch (error) {
-    console.error('Error sending email:', error);
+    logger.error('Error sending email:', error);
     return NextResponse.json({ error: 'Error sending email' }, { status: 500 });
   }
 

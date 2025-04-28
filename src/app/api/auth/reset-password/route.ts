@@ -5,6 +5,7 @@ import { NextResponse } from 'next/server';
 import { connectDB } from '@/lib/mongodb';
 import { User } from '@/models/User';
 import bcrypt from 'bcrypt';
+import {logger} from '@/lib/logger';
 
 interface ResetBody {
   token: string;
@@ -55,7 +56,7 @@ export async function POST(req: NextRequest) {
       { status: 200 }
     );
   } catch (error: any) {
-    console.error('Reset password error:', error);
+    logger.error('Reset password error:', error);
     return NextResponse.json(
       { message: 'Something went wrong.' },
       { status: 500 }

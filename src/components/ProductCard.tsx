@@ -1,5 +1,6 @@
 // components/ProductCard.tsx
 'use client';
+import Image from 'next/image';
 
 import { motion } from 'framer-motion';
 
@@ -21,7 +22,7 @@ export default function ProductCard({ data }: ProductProps) {
       transition={{ duration: 0.3 }}
       className="bg-white rounded-md shadow-sm hover:shadow-lg transition overflow-hidden"
     >
-      <img
+      <Image
         src={data.image}
         alt={data.title}
         className="w-full h-48 object-cover"

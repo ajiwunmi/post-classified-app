@@ -1,6 +1,6 @@
 'use client';
 import Header from '@/components/Header';
-import HeroBanner from '@/components/HeroBanner';
+// import HeroBanner from '@/components/HeroBanner';
 import HeaderSlider from '@/components/HeaderSlider';
 import CategoryGrid from '@/components/CategoryGrid';
 import ProductCard from '@/components/ProductCard';

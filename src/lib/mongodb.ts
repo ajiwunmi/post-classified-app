@@ -1,5 +1,6 @@
 // lib/mongodb.ts
 import mongoose from 'mongoose';
+import { logger } from '@/lib/logger';
 
 const MONGODB_URI = process.env.MONGODB_URI as string;
 
@@ -7,10 +8,7 @@ if (!MONGODB_URI) {
   throw new Error('⚠️ MONGODB_URI not defined in .env');
 }
 
-type mongoType = {
-  conn: string;
-  promise: string;
-};
+
 
 const cached = global.mongoose || { conn: null, promise: null };
 
@@ -24,7 +22,9 @@ export async function connectDB() {
       } as any)
       .then((mongoose) => mongoose)
       .catch((error) => {
-        console.error('MongoDB connection error:', error);
+        logger.error('Error connecting to MongoDB:', error);
+        logger.debug('MongoDB connection error:', error);
+
         process.exit(1);
       });
   }

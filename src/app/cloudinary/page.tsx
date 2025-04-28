@@ -1,7 +1,8 @@
 'use client';
 
 import { CldUploadButton } from 'next-cloudinary';
-import { POST } from '@/app/api/upload/route';
+// import { POST } from '@/app/api/upload/route';
+import { logger } from '@/lib/logger';
 
 export default function CloudinaryPage() {
   const preset = process.env.NEXT_PUBLIC_CLOUDINARY_PRESET;
@@ -10,11 +11,11 @@ export default function CloudinaryPage() {
   const folderName = `classified-ads/user-${userId}/products`;
 
   const handleUpload = async (results: any) => {
-    console.log(results);
+    logger.error(results);
     const imageUrl = results?.info?.secure_url;
     const publicId = results?.info?.public_id;
     if (!imageUrl || !publicId) {
-      console.error('Missing Cloudinary upload info.');
+      logger.error('Missing Cloudinary upload info.');
       return;
     }
     try {
@@ -35,9 +36,9 @@ export default function CloudinaryPage() {
       }
 
       const data = res.json();
-      console.log('Saved image to DB:', data);
+      logger.info('Saved image to DB:', data);
     } catch (error) {
-      console.error('Upload handling failed:', error);
+      logger.error('Upload handling failed:', error);
     }
   };
 

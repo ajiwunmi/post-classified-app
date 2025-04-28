@@ -12,7 +12,7 @@ export default function RegisterPage() {
     confirm_password: '',
   });
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+ 
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e: any) => {
@@ -22,7 +22,7 @@ export default function RegisterPage() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setError('');
-    setSuccess('');
+   
     setLoading(true);
 
     const res = await fetch('/api/auth/register', {
@@ -38,7 +38,7 @@ export default function RegisterPage() {
       setLoading(false);
     } else {
       setLoading(false);
-      setSuccess('🎉 Registered! Redirecting...');
+      
       setTimeout(() => router.push('/auth/login'), 2000);
     }
   };

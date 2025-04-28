@@ -2,8 +2,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
-
-const categories = ['Electronics', 'Cars', 'Real Estate', 'Fashion'];
+import Image from 'next/image';
 
 export default function AdForm() {
   const { data: session } = useSession();
@@ -55,6 +54,7 @@ export default function AdForm() {
       !form.description ||
       !imageFile
     ) {
+      setForm({ ...form });
       setError('Please fill all fields + upload image');
       return;
     }
@@ -96,7 +96,13 @@ export default function AdForm() {
         <label className="block text-sm font-medium mb-1">Upload Image</label>
         <input type="file" accept="image/*" onChange={handleImage} />
         {imagePreview && (
-          <img src={imagePreview} className="mt-4 w-40 h-40 object-cover" />
+          <Image
+            src={imagePreview}
+            alt="Preview of uploaded image" // Added alt for accessibility
+            className="mt-4 w-40 h-40 object-cover"
+            width={160} // Set width for optimization
+            height={160} // Set height for optimization
+          />
         )}
       </div>
 

@@ -4,6 +4,8 @@ import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { logger } from '@/lib/logger';
+import Image from 'next/image';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -29,7 +31,8 @@ export default function LoginPage() {
       password,
       redirect: false,
     });
-    console.log('Logging the response from Callback', res);
+    logger.info('Logging the response from Callback', res);
+   
     if (res?.error) {
       setError('Invalid email or password');
       setLoading(false);
@@ -82,7 +85,13 @@ export default function LoginPage() {
                   className=" cursor-pointer bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
                   type="button"
                 >
-                  <img alt="..." className="w-5 mr-1" src="/img/github.svg" />
+                  <Image
+                    alt="GitHub logo"
+                    className="w-5 mr-1"
+                    src="/img/github.svg"
+                    width={20} // Set the width (adjust as needed)
+                    height={20} // Set the height (adjust as needed)
+                  />
                   Github
                 </button>
 
@@ -91,7 +100,14 @@ export default function LoginPage() {
                   className=" cursor-pointer bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
                   type="button"
                 >
-                  <img alt="..." className="w-5 mr-1" src="/img/google.svg" />
+                
+                  <Image
+                    alt="Google logo"
+                    className="w-5 mr-1"
+                    src="/img/google.svg"
+                    width={20} // Set the width (adjust as needed)
+                    height={20} // Set the height (adjust as needed)
+                  />
                   Google
                 </button>
               </div>

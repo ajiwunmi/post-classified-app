@@ -1,7 +1,7 @@
 'use client';
 ////app/components/header.tsx
 import Link from 'next/link';
-import { useSession, signOut, signIn } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 
 export default function Header() {
   const { data: session } = useSession();
@@ -39,9 +39,7 @@ export default function Header() {
               Login
             </Link>
           )}
-          {/* <button onClick={() => signIn('github')} className="text-blue-600">
-            Login
-          </button> */}
+         
         </nav>
       </div>
     </header>

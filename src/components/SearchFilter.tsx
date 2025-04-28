@@ -1,23 +1,29 @@
-// components/SearchFilter.tsx
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface SearchFilterProps {
   categories: string[];
-  onFilterChange: (category: string) => void;
+  // eslint-disable-next-line no-unused-vars
+  _onFilterChange: (category: string) => void;
+  category: string; // Assuming you want to use category
 }
 
 export default function SearchFilter({
   categories,
-  onFilterChange,
+  _onFilterChange,
+  category, // Use category prop
 }: SearchFilterProps) {
-  const [selected, setSelected] = useState('All');
+  const [selected, setSelected] = useState(category);
+
+  useEffect(() => {
+    setSelected(category); // Update selected when category prop changes
+  }, [category]);
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const category = e.target.value;
     setSelected(category);
-    onFilterChange(category);
+    _onFilterChange(category);
   };
 
   return (
