@@ -1,5 +1,4 @@
-// models/Ad.ts
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'; // Ensure mongoose is imported only once
 
 const AdSchema = new mongoose.Schema({
   title: { type: String, required: true },
@@ -32,4 +31,5 @@ const AdSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
+// Using `mongoose.models.Ad` to avoid redefinition if already exists
 export default mongoose.models.Ad || mongoose.model('Ad', AdSchema);
